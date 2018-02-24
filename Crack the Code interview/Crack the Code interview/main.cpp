@@ -37,13 +37,8 @@ bool isUniqueWithoutDS(string line){
     return true;
 }
 
-void question_1_1(string line) {
-    cout << "is Unique: "<< isUnique(line) << "\n";
-    cout << "is Unique Without Data Structure: "<< isUniqueWithoutDS(line) << "\n";
-}
-
-
-bool question1_2(string line1, string line2){
+//question 1.2
+bool checkPermutation(string line1, string line2){
     map<char,int> permutedTable;
     string permutedString = (line1.length() > line2.length()) ? line1 : line2;
     string checkString =(line1.length() <= line2.length()) ? line1 : line2;
@@ -66,7 +61,64 @@ bool question1_2(string line1, string line2){
     return true;
 }
 
+
+//question 1.3
+string URLify(string line){
+    int i = 0;
+    //trim
+    while(i<line.length() && isspace(line[i])){
+        i++;
+    }
+    line = line.substr(i, line.length() - i);
+    i = (int)line.length() - 1;
+    while(i>=0 && isspace(line[i])){
+        i--;
+    }
+    line = line.substr(0,i+1);
+    string output = "";
+    bool added = false;
+    for(int x=0; x<line.length(); x++){
+        if(isspace(line[x]) && !added){
+            output += "%20%";
+            added = true;
+        }
+        else if(!isspace(line[x])){
+            added = false;
+            output+= line[x];
+        }
+    }
+    return output;
+}
+
+//question 1.4
+bool palindromePermutation(string line){
+    map<char,int> permutedTable;
+    for(int x = 0; x< line.length(); x++){
+        if(!isspace(line[x])){
+            permutedTable[line[x]] = (permutedTable.find(line[x]) == permutedTable.end()) ?  1:  permutedTable.at(line[x]) + 1;
+        }
+    }
+    bool allowance = true;
+    for(map<char,int>::iterator i = permutedTable.begin(); i!=permutedTable.end(); i++){
+        if(i->second % 2 == 1){
+            if(allowance){
+                allowance = false;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+//question 1.5
+bool oneAway(string line){
+    
+    return false;
+}
+
 int main(int argc, const char * argv[]) {
-  
+
     return 0;
 }
