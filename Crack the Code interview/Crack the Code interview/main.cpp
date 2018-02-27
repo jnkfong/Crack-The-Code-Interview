@@ -113,12 +113,34 @@ bool palindromePermutation(string line){
 }
 
 //question 1.5
-bool oneAway(string line){
+bool oneAway(string line1, string line2){
+    if(line1.length() - 1 > line2.length() || line1.length() + 1 < line2.length()) return false;
+    bool flag = false;
+    int j = 0;
+    for(int i = 0; i < line1.length(); i++){
+        if(line1[i] != line2[j]){
+            if(flag){
+                return false;
+            }
+            else if(line1.length() == line2.length() + 1){
+                j--;
+            }
+            else if(line1.length() == line2.length() - 1){
+                j++;
+            }
+            flag = true;
+        }
+        j++;
+    }
+    return true;
+}
+//question 1.6
+string stringCompression(string line){
     
-    return false;
+    return "";
 }
 
 int main(int argc, const char * argv[]) {
-
+    
     return 0;
 }
